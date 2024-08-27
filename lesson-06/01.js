@@ -13,35 +13,40 @@
 */
 
 const WEB_TECH_IMAGES = [
-  'https://production-it-incubator.s3.eu-central-1.amazonaws.com/file-manager/Image/32f74d50-68d0-46aa-b035-7b3a5300d2c1_js-magic-logo.jpg',
-  'https://production-it-incubator.s3.eu-central-1.amazonaws.com/file-manager/Image/c8a1f4a6-1337-4899-bdfd-a8c9c7bb806a_css-magic-logo.jpg',
-  'https://production-it-incubator.s3.eu-central-1.amazonaws.com/file-manager/Image/784380b9-6937-42a6-bdfe-869835820234_html-magic-logo.jpg',
-]
-const prevBtn = document.getElementById('prev-button');
+  "https://production-it-incubator.s3.eu-central-1.amazonaws.com/file-manager/Image/32f74d50-68d0-46aa-b035-7b3a5300d2c1_js-magic-logo.jpg",
+  "https://production-it-incubator.s3.eu-central-1.amazonaws.com/file-manager/Image/c8a1f4a6-1337-4899-bdfd-a8c9c7bb806a_css-magic-logo.jpg",
+  "https://production-it-incubator.s3.eu-central-1.amazonaws.com/file-manager/Image/784380b9-6937-42a6-bdfe-869835820234_html-magic-logo.jpg",
+];
+// Получаем элементы кнопок и изображения
+const prevBtn = document.getElementById("prev-button");
 const nextBtn = document.getElementById("next-button");
-const image = document.getElementById("web-tech-image");
+const imgElement = document.getElementById("web-tech-image");
 
-prevBtn.addEventListener('click', function () {
-  // let current = +section.getAttribute("data-current");
-  // current++;
-  // if (current >= WEB_TECH_IMAGES.length) {
-  //   current = 0;
-  // }
-  // section.setAttribute("data-current", current);
-  // section.innerHTML = array[current];
+// Текущий индекс изображения
+let currentIndex = 0;
 
-for (let index = 0; index < WEB_TECH_IMAGES.length; index++) {
-  const element = WEB_TECH_IMAGES[index];
-  if (element >= WEB_TECH_IMAGES.length) {
-    element = 0;
-  image.
-}
-    
-  }
+// Функция для обновления изображения
+function updateImage() {
+  imgElement.src = WEB_TECH_IMAGES[currentIndex];
 }
 
-});
+// Функция для переключения на предыдущее изображение
+function showPreviosImage() {
+  currentIndex =
+    currentIndex === 0 ? WEB_TECH_IMAGES.length - 1 : currentIndex - 1;
+  updateImage();
+}
 
-nextBtn.addEventListener('click', function () {
+// Функцяи для переключения на следующее изображение
+function showNextImage() {
+  currentIndex =
+    currentIndex === WEB_TECH_IMAGES.length - 1 ? 0 : currentIndex + 1;
+  updateImage();
+}
 
-});
+// Привязываем функции к кнопкам
+prevBtn.addEventListener("click", showPreviosImage);
+nextBtn.addEventListener("click", showNextImage);
+
+// Изначально устанавливаем первое изображение
+updateImage();
